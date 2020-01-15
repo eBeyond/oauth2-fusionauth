@@ -1,12 +1,12 @@
 {
-    "name": "league/oauth2-google",
+    "name": "ebeyond/oauth2-fusionauth",
     "description": "Google OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
     "license": "MIT",
     "authors": [
         {
-            "name": "Woody Gilk",
-            "email": "woody.gilk@gmail.com",
-            "homepage": "http://shadowhand.me"
+            "name": "Marc Ende",
+            "email": "me@e-beyond.de",
+            "homepage": "https://github.com/eBeyond"
         }
     ],
     "keywords": [
@@ -15,7 +15,7 @@
         "client",
         "authorization",
         "authentication",
-        "google"
+        "fusionauth"
     ],
     "minimum-stability": "stable",
     "require": {
