@@ -1,6 +1,6 @@
 <?php
 
-namespace League\OAuth2\Client\Exception;
+namespace eBeyond\OAuth2\Client\Exception;
 
 /**
  * Exception thrown if the FusionAuth Provider is configured with a hosted domain that the user doesn't belong to

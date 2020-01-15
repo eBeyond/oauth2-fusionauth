@@ -1,6 +1,6 @@
 <?php
 
-namespace League\OAuth2\Client\Provider;
+namespace eBeyond\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Exception\HostedDomainException;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
