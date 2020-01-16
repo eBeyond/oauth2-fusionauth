@@ -2,111 +2,110 @@
 
 namespace eBeyond\OAuth2\Client\Provider;
 
+use League\OAuth2\Client\Provider\ResourceOwnerInterface;
+use League\OAuth2\Client\Tool\ArrayAccessorTrait;
+
 class FusionAuthUser implements ResourceOwnerInterface
 {
+       use ArrayAccessorTrait;
+
     /**
+     * Domain
+     *
+     * @var string
+     */
+    protected $domain;
+
+    /**
+     * Raw response
+     *
      * @var array
      */
     protected $response;
 
     /**
-     * @param array $response
+     * Creates new resource owner.
+     *
+     * @param array  $response
      */
-    public function __construct(array $response)
+    public function __construct(array $response = array())
     {
         $this->response = $response;
     }
 
+    /**
+     * Get resource owner id
+     *
+     * @return string|null
+     */
     public function getId()
     {
-        return $this->response['sub'];
+        return $this->getValueByKey($this->response, 'id');
     }
 
     /**
-     * Get preferred display name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->response['name'];
-    }
-
-    /**
-     * Get preferred first name.
-     *
-     * @return string|null
-     */
-    public function getFirstName()
-    {
-        return $this->getResponseValue('given_name');
-    }
-
-    /**
-     * Get preferred last name.
-     *
-     * @return string|null
-     */
-    public function getLastName()
-    {
-        return $this->getResponseValue('family_name');
-    }
-
-    /**
-     * Get locale.
-     *
-     * @return string|null
-     */
-    public function getLocale()
-    {
-        return $this->getResponseValue('locale');
-    }
-
-    /**
-     * Get email address.
+     * Get resource owner email
      *
      * @return string|null
      */
     public function getEmail()
     {
-        return $this->getResponseValue('email');
+        return $this->getValueByKey($this->response, 'email');
     }
 
     /**
-     * Get hosted domain.
+     * Get resource owner name
      *
      * @return string|null
      */
-    public function getHostedDomain()
+    public function getName()
     {
-        return $this->getResponseValue('hd');
+        return $this->getValueByKey($this->response, 'name');
     }
 
     /**
-     * Get avatar image URL.
+     * Get resource owner nickname
      *
      * @return string|null
      */
-    public function getAvatar()
+    public function getNickname()
     {
-        return $this->getResponseValue('picture');
+        return $this->getValueByKey($this->response, 'login');
     }
 
     /**
-     * Get user data as an array.
+     * Get resource owner url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        $urlParts = array_filter([$this->domain, $this->getNickname()]);
+
+        return count($urlParts) ? implode('/', $urlParts) : null;
+    }
+
+    /**
+     * Set resource owner domain
+     *
+     * @param  string $domain
+     *
+     * @return ResourceOwner
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Return all of the owner details available as an array.
      *
      * @return array
      */
     public function toArray()
     {
         return $this->response;
-    }
-
-    private function getResponseValue($key)
-    {
-        if (array_key_exists($key, $this->response)) {
-            return $this->response[$key];
-        }
-        return null;
     }
 }

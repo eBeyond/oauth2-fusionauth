@@ -9,8 +9,8 @@ use League\OAuth2\Client\Tool\BearerAuthorizationTrait;
 use League\OAuth2\Client\Tool\GuardedPropertyTrait;
 use League\OAuth2\Client\Provider\GenericProvider;
 use Psr\Http\Message\ResponseInterface;
-use eBeyond\OAuth2\Client\Provider\FusionAuthIdentityProviderException;
-use League\OAuth2\Client\Provider\AbstractProvider
+use eBeyond\OAuth2\Client\Provider\Exception\FusionAuthIdentityProviderException;
+use League\OAuth2\Client\Provider\AbstractProvider;
 
 class FusionAuth extends AbstractProvider 
 {
@@ -50,7 +50,7 @@ class FusionAuth extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->$urlAuthorize;
+        return $this->urlAuthorize;
     }
     /**
      * Get access token url to retrieve token
