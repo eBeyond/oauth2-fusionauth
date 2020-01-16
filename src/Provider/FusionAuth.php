@@ -10,6 +10,7 @@ use League\OAuth2\Client\Tool\GuardedPropertyTrait;
 use League\OAuth2\Client\Provider\GenericProvider;
 use Psr\Http\Message\ResponseInterface;
 use eBeyond\OAuth2\Client\Provider\FusionAuthIdentityProviderException;
+use League\OAuth2\Client\Provider\AbstractProvider
 
 class FusionAuth extends AbstractProvider 
 {
